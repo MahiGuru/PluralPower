@@ -3,7 +3,7 @@ import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 
-import Pagination from "react-js-pagination";
+import Pagination from "react-paginate";
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -27,28 +27,26 @@ const styles = {
       },
 }
 class Carousel extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          activePage: 15
-        };
-      }
-  
-      handlePageChange(pageNumber) {
-        console.log(`active page is ${pageNumber}`);
-        this.setState({activePage: pageNumber});
-      }
+    state = {
+        index: 0,
+      };
+    
+      handleChangeIndex = index => {
+        this.setState({
+          index,
+        });
+      };
   render() {
     const { index } = this.state; 
       return ( 
-          <div style={styles.root}>
-            <AutoPlaySwipeableViews>
-              <div style={Object.assign({}, styles.slide, styles.slide1)}>slide n°1</div>
-              <div style={Object.assign({}, styles.slide, styles.slide2)}>slide n°2</div>
-              <div style={Object.assign({}, styles.slide, styles.slide3)}>slide n°3</div>
+        <div style={styles.root}>
+            <AutoPlaySwipeableViews index={index} onChangeIndex={this.handleChangeIndex}>
+            <div style={Object.assign({}, styles.slide, styles.slide1)}>slide n°1</div>
+            <div style={Object.assign({}, styles.slide, styles.slide2)}>slide n°2</div>
+            <div style={Object.assign({}, styles.slide, styles.slide3)}>slide n°3</div>
             </AutoPlaySwipeableViews>
-            <Pagination dots={3} index={index} onChange={this.handleChangeIndex} />
-          </div> 
+            <Pagination dots={3} index={index} onChangeIndex={this.handleChangeIndex} />
+      </div>
         
       );
     }
