@@ -1,0 +1,17 @@
+.carousel-container{
+    position: relative;
+}
+.slide {
+    padding: 15px;
+    min-height: 300px;
+    color: #fff;
+  }
+.slide1 {
+    background-color: #FEA900
+  }
+.slide2 {
+    background-color: #B3DC4A;
+  }
+.slide3 {
+    background-color: #6AC0FF;
+  }
